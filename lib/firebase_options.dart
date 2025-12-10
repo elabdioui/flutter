@@ -50,22 +50,21 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBow77tBiJ2k8hb4RbPrc0d2ZzjRIgv4I0',
-    appId: '1:440073669740:web:d10f3a109aa62b0b0adc49',
-    messagingSenderId: '440073669740',
-    projectId: 'flutter-34477',
-    authDomain: 'flutter-34477.firebaseapp.com',
-    databaseURL: 'https://flutter-34477-default-rtdb.firebaseio.com',
-    storageBucket: 'flutter-34477.firebasestorage.app',
-    measurementId: 'G-H1EVJEBGPP',
+    apiKey: 'AIzaSyDKfBT_bIJ7g0JCjKIKN8zGbWfSfW9rrIk',
+    appId: '1:255429867066:web:26341056afcd141ce1a703',
+    messagingSenderId: '255429867066',
+    projectId: 'my-flutter-ai-app-73872',
+    authDomain: 'my-flutter-ai-app-73872.firebaseapp.com',
+    storageBucket: 'my-flutter-ai-app-73872.firebasestorage.app',
+    measurementId: 'G-T3WT7371KP',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD01H9IYHDb8oE7DCr60Fw9ppKxkdRW5a4',
-    appId: '1:440073669740:android:45077a9eea523ff20adc49',
-    messagingSenderId: '440073669740',
-    projectId: 'flutter-34477',
-    databaseURL: 'https://flutter-34477-default-rtdb.firebaseio.com',
-    storageBucket: 'flutter-34477.firebasestorage.app',
+    apiKey: 'AIzaSyBp74r2pDMGByLv0qvrgEgRcu8I01bqcvI',
+    appId: '1:255429867066:android:dd5af9f61d17d2a6e1a703',
+    messagingSenderId: '255429867066',
+    projectId: 'my-flutter-ai-app-73872',
+    storageBucket: 'my-flutter-ai-app-73872.firebasestorage.app',
   );
+
 }
