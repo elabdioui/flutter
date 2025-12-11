@@ -84,94 +84,93 @@ def load_data():
 
     return train_generator, val_generator
 
-# def create_cnn_model():
-#     """Cree le modele CNN"""
-#     print("\nCreation du modele CNN...")
-#
-#     model = tf.keras.Sequential([
-#         layers.Input(shape=(*IMG_SIZE, 3)),
-#
-#         layers.Conv2D(32, (3, 3), activation='relu', padding='same'),
-#         layers.BatchNormalization(),
-#         layers.Conv2D(32, (3, 3), activation='relu', padding='same'),
-#         layers.MaxPooling2D((2, 2)),
-#         layers.Dropout(0.25),
-#
-#         layers.Conv2D(64, (3, 3), activation='relu', padding='same'),
-#         layers.BatchNormalization(),
-#         layers.Conv2D(64, (3, 3), activation='relu', padding='same'),
-#         layers.MaxPooling2D((2, 2)),
-#         layers.Dropout(0.25),
-#
-#         layers.Conv2D(128, (3, 3), activation='relu', padding='same'),
-#         layers.BatchNormalization(),
-#         layers.Conv2D(128, (3, 3), activation='relu', padding='same'),
-#         layers.MaxPooling2D((2, 2)),
-#         layers.Dropout(0.25),
-#
-#         layers.Flatten(),
-#         layers.Dense(256, activation='relu'),
-#         layers.BatchNormalization(),
-#         layers.Dropout(0.5),
-#         layers.Dense(128, activation='relu'),
-#         layers.Dropout(0.5),
-#         layers.Dense(len(CLASSES), activation='softmax')
-#     ])
-#
-#     model.compile(
-#         optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
-#         loss='sparse_categorical_crossentropy',
-#         metrics=['accuracy']
-#     )
-#
-#     return model
-#
-# def train_cnn(train_gen, val_gen):
-#     """Entraine le modele CNN"""
-#     print("\n" + "="*70)
-#     print("ENTRAINEMENT DU MODELE CNN")
-#     print("="*70)
-#     print(f"Temps estime : 15-30 minutes")
-#     print(f"{EPOCHS} epoques d'entrainement\n")
-#
-#     model = create_cnn_model()
-#
-#     callbacks = [
-#         tf.keras.callbacks.EarlyStopping(
-#             monitor='val_accuracy',
-#             patience=10,  # Augmenté de 5 à 10
-#             restore_best_weights=True
-#         ),
-#         tf.keras.callbacks.ReduceLROnPlateau(
-#             monitor='val_loss',
-#             factor=0.5,
-#             patience=5,  # Augmenté de 3 à 5
-#             min_lr=0.00001
-#         )
-#     ]
-#
-#     history = model.fit(
-#         train_gen,
-#         epochs=EPOCHS,
-#         validation_data=val_gen,
-#         callbacks=callbacks,
-#         verbose=1
-#     )
-#
-#     model.save('models/cnn_model.h5')
-#
-#     final_train_acc = history.history['accuracy'][-1]
-#     final_val_acc = history.history['val_accuracy'][-1]
-#
-#     print("\n" + "="*70)
-#     print("MODELE CNN ENTRAINE ET SAUVEGARDE")
-#     print("="*70)
-#     print(f"Precision entrainement : {final_train_acc*100:.2f}%")
-#     print(f"Precision validation : {final_val_acc*100:.2f}%")
-#     print(f"Sauvegarde : models/cnn_model.h5")
-#
-#     return model, history
+def create_cnn_model():
+    """Cree le modele CNN"""
+    print("\nCreation du modele CNN...")
 
+    model = tf.keras.Sequential([
+        layers.Input(shape=(*IMG_SIZE, 3)),
+
+        layers.Conv2D(32, (3, 3), activation='relu', padding='same'),
+        layers.BatchNormalization(),
+        layers.Conv2D(32, (3, 3), activation='relu', padding='same'),
+        layers.MaxPooling2D((2, 2)),
+        layers.Dropout(0.25),
+
+        layers.Conv2D(64, (3, 3), activation='relu', padding='same'),
+        layers.BatchNormalization(),
+        layers.Conv2D(64, (3, 3), activation='relu', padding='same'),
+        layers.MaxPooling2D((2, 2)),
+        layers.Dropout(0.25),
+
+        layers.Conv2D(128, (3, 3), activation='relu', padding='same'),
+        layers.BatchNormalization(),
+        layers.Conv2D(128, (3, 3), activation='relu', padding='same'),
+        layers.MaxPooling2D((2, 2)),
+        layers.Dropout(0.25),
+
+        layers.Flatten(),
+        layers.Dense(256, activation='relu'),
+        layers.BatchNormalization(),
+        layers.Dropout(0.5),
+        layers.Dense(128, activation='relu'),
+        layers.Dropout(0.5),
+        layers.Dense(len(CLASSES), activation='softmax')
+    ])
+
+    model.compile(
+        optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+        loss='sparse_categorical_crossentropy',
+        metrics=['accuracy']
+    )
+
+    return model
+
+def train_cnn(train_gen, val_gen):
+    """Entraine le modele CNN"""
+    print("\n" + "="*70)
+    print("ENTRAINEMENT DU MODELE CNN")
+    print("="*70)
+    print(f"Temps estime : 15-30 minutes")
+    print(f"{EPOCHS} epoques d'entrainement\n")
+
+    model = create_cnn_model()
+
+    callbacks = [
+        tf.keras.callbacks.EarlyStopping(
+            monitor='val_accuracy',
+            patience=10,  # Augmenté de 5 à 10
+            restore_best_weights=True
+        ),
+        tf.keras.callbacks.ReduceLROnPlateau(
+            monitor='val_loss',
+            factor=0.5,
+            patience=5,  # Augmenté de 3 à 5
+            min_lr=0.00001
+        )
+    ]
+
+    history = model.fit(
+        train_gen,
+        epochs=EPOCHS,
+        validation_data=val_gen,
+        callbacks=callbacks,
+        verbose=1
+    )
+
+    model.save('models/cnn_model.h5')
+
+    final_train_acc = history.history['accuracy'][-1]
+    final_val_acc = history.history['val_accuracy'][-1]
+
+    print("\n" + "="*70)
+    print("MODELE CNN ENTRAINE ET SAUVEGARDE")
+    print("="*70)
+    print(f"Precision entrainement : {final_train_acc*100:.2f}%")
+    print(f"Precision validation : {final_val_acc*100:.2f}%")
+    print(f"Sauvegarde : models/cnn_model.h5")
+
+    return model, history
 
 def create_ann_model():
     """Cree le modele ANN"""
